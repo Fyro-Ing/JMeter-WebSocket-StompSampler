@@ -148,7 +148,7 @@ public class WebSocketSampler extends AbstractSampler implements TestStateListen
 				errorList.append(" - Connection couldn't be opened").append("\n");
 				return sampleResult;
 			}
-			if (StringUtils.isEmpty(connectPaylodMessage) || StringUtils.isEmpty(subscribePaylodMessage)) {
+			if (StringUtils.isEmpty(connectPaylodMessage)/** || StringUtils.isEmpty(subscribePaylodMessage)**/) {
 				//Couldn't open a connection, set the status and exit
 				sampleResult.setResponseCode("400");
 				sampleResult.setSuccessful(false);
@@ -169,15 +169,15 @@ public class WebSocketSampler extends AbstractSampler implements TestStateListen
 
 			sampleResult.setResponseCode(getCodeRetour(socket));
 
-			sendMessage(socket, subscribePaylodMessage);
+			/**sendMessage(socket, subscribePaylodMessage);**/
 
 			//Wait for any of the following:
 			// - Response matching response pattern is received
 			// - Response matching connection closing pattern is received
 			// - Timeout is reached
-			socket.awaitSubscribe(responseTimeout, TimeUnit.MILLISECONDS);
+			/**socket.awaitSubscribe(responseTimeout, TimeUnit.MILLISECONDS);**/
 
-			sampleResult.setResponseCode(getCodeRetour(socket));
+			/**sampleResult.setResponseCode(getCodeRetour(socket));**/
 
 			//Set sampler response code
 			if (socket.getError() != 0) {
